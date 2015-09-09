@@ -1,3 +1,6 @@
+//controllers are the link b/t views and data
+//this is where our logic goes
+//define functions that interact with our models and our views in the controller
 (function() {
   angular.module('grumbleControllers', [])
   .controller('grumblesController', function() {
@@ -21,7 +24,7 @@
       this.reset()
     }
     this.edit = function(index){
-      var grumble = this.grumbles[index] 
+      var grumble = this.grumbles[index]
       this.title = grumble.title
       this.authorName = grumble.authorName
       this.photoUrl = grumble.photoUrl
@@ -34,6 +37,7 @@
       grumble.photoUrl = this.photoUrl
       grumble.content = this.content
     }
+    //only display element if property of controller evaluates to true
     this.formIsVisible = false
     this.showGrumble = true
     this.toggleForm = function(){
@@ -41,4 +45,14 @@
       this.reset()
     }
   });
+
+  app.controller( 'commentsController', function(){
+    this.create = function(grumble){
+      grumble.comments.unshift({
+        content: grumble.newCommentContent
+      });
+      grumble.newCommentContent = "";
+      }
+    })
+
 })();

@@ -1,3 +1,12 @@
+//controllers are go-between for views(our HTML) and our data
+//instantiate a controller - this is where all logic will be contained
+
+// $resource gives us access to get(), query(), save(), remove(), and delete()
+// get() returns a single entry (need id)
+// query() returns all entries (no id)
+// save(), delete(), and remove() methods are also available -- but only on a resource instance  rather than the entire class
+
+
 (function() {
   var grumbleControllers = angular.module('grumbleControllers', ['ngRoute'])
 
@@ -25,7 +34,9 @@
     }
   }])
 
-  // edit form controller (handles update)
+//when $update() function is called, triggers PUT request to url with designated id
+
+  //edit form controller (handles update)
   grumbleControllers.controller('editGrumbleController', ["$location","$routeParams", 'Grumble', function($location, $routeParams, Grumble){
     this.grumble = Grumble.get({id: $routeParams.id})
     this.update = function(){

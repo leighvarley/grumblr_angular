@@ -12,11 +12,14 @@
 
   // index controller
   grumbleControllers.controller('grumblesController', ['Grumble', function(Grumble) {
+    //Grumble.query() is provided by service
     this.grumbles = Grumble.query();
   }]);
 
   // show controller (handles delete link on show page)
   grumbleControllers.controller('grumbleController', ['$routeParams','$location','$http', 'Grumble', function($routeParams, $location, $http, Grumble){
+    //not sure what to do - use consol.log!
+    //not sure what something is? console.log(this.grumble) to find out
     this.grumble = Grumble.get({id: $routeParams.id});
     this.delete = function(id){
       Grumble.delete({id: id}, function(){
